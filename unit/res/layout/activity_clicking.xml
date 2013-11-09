@@ -8,11 +8,11 @@
         android:id="@+id/tv_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/tv_score"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:textSize="40sp"
-        android:text="@string/team_name" />
+        android:text="@string/team_name"
+        android:textSize="40sp" />
     
     <LinearLayout
         android:id="@+id/b_bottom"
@@ -39,14 +39,6 @@
         
     </LinearLayout>
 
-    <Button
-        android:id="@+id/b_team_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/bteamscore" />
-
     <TextView
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
@@ -61,15 +53,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_team_name"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bclick" />
+        android:background="@drawable/waffle" />
+
+    <Button
+        android:id="@+id/b_team_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/b_click"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bteamscore" />
 
     <Button
         android:id="@+id/b_bump"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/b_bottom"
-        android:layout_alignRight="@+id/b_click"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bbump" />
+        android:layout_below="@+id/b_team_score"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/bbum" />
 
 </RelativeLayout>

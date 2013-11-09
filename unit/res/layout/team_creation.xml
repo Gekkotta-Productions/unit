@@ -5,14 +5,6 @@
     android:orientation="vertical" >
     
     <TextView
-        android:id="@+id/instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_above="@+id/et_team_name"
-        android:text="@string/teamName" />
-    
-    <TextView
         android:id="@+id/name_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,27 +20,38 @@
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
         android:inputType="text" />
-    
-    <LinerLayout
+
+    <LinearLayout
         android:id="@+id/b_block"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/et_team_name"
         android:orientation="horizontal" >
-        
+
         <Button
             android:id="@+id/confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Confirm" />
-        
+
         <Button
             android:id="@+id/solo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Go Solo" />
-        
-    </LinerLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/et_team_name"
+        android:layout_alignRight="@+id/et_team_name"
+        android:layout_margin="15dp"
+        android:layout_marginBottom="76dp"
+        android:text="@string/teamName" />
 
 </RelativeLayout>

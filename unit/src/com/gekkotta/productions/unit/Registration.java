@@ -95,7 +95,7 @@ public class Registration extends Activity {
 					editor.putString("TeamName", c);
 					editor.putString("TeamId", "0");
 					editor.commit();
-					startActivity(new Intent("android.intent.action.CLICKING"));
+					startActivity(new Intent("android.intent.action.TEAMCREATION"));
 				}
 			}
 		});

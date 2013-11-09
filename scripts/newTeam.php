@@ -19,6 +19,6 @@ $teamInput = "INSERT INTO Teams(name) VALUES('$teamname')";
 $teamObjQuery = mysql_query($teamInput);
 $teamNumQuery = "SELECT LAST(teamID) FROM Teams";
 $teamNum = mysql_query($teamNumQuery);
-mysql_query(UPDATE Players SET teamID = $teamNum WHERE IGname = $IGname);
+mysql_query("UPDATE Players SET teamID = $teamNum WHERE IGname = $IGname");
 print true;
 ?>

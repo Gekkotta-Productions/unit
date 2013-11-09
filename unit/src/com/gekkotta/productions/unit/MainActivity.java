@@ -18,9 +18,8 @@ Button bump;
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent("android.intent.action.BUMP");
+				Intent i = new Intent("android.intent.action.CLICKING");
 				startActivity(i);
-				
 			}
 		});
 	}

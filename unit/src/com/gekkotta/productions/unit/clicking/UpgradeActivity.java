@@ -15,3 +15,29 @@ public class UpgradeActivity extends Activity{
 	}
 
 }
+
+class Upgrade{
+	
+	Integer upgradePic;
+	String upgradeName;
+	int upgradeCost;
+	
+	public Upgrade(Integer pic, String name, int cost){
+		upgradePic = pic;
+		upgradeName = name;
+		upgradeCost = cost;
+	}
+	
+	public Integer getPic(){
+		return upgradePic;
+	}
+	
+	public String getName(){
+		return upgradeName;
+	}
+	
+	public int getCost(){
+		return upgradeCost;
+	}
+	
+}

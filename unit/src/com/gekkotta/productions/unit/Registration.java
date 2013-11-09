@@ -88,6 +88,7 @@ public class Registration extends Activity {
 					SharedPreferences settings = getSharedPreferences(
 							"SaveFile", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = settings.edit();
+					editor.putBoolean("SAVED", true);
 					editor.putString("Name", a);
 					editor.putString("Email", b);
 					editor.putString("IGN", c);

@@ -1,7 +1,9 @@
 package com.gekkotta.productions.unit;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,7 +20,13 @@ Button bump;
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent("android.intent.action.REGISTRATION");
+				Intent i;
+				SharedPreferences settings = getSharedPreferences("SaveFile", Context.MODE_PRIVATE);
+				if(!settings.getBoolean("SAVE", false)){
+					i = new Intent("android.intent.action.REGISTRATION");
+				} else {
+					i = new Intent("android.intent.action.CLICKING");
+				}
 				startActivity(i);
 			}
 		});

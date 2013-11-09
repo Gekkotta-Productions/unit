@@ -1,16 +1,18 @@
 <?php
-$objConnect = new MongoClient("mongodb://$root:$pass@172.26.13.13");
-$objDB = $objConnect -> selectDB('Server');
+$objConnect = new MongoClient("mongodb://localhost");
+$db = "Server";
+$objDB = $objConnect->$db;
+$collection = $db->"Players";
 
 $val = $_GET["id"];
 
 $query = "";
 
 if ($val == "a"){
-	$query = db.Players.find();
+	$query = $collection->find();
 }
 else {
-	$query = db.Players.find({PlayerID: $val});
+	$query = $collection->find({"playerID": $val});
 }
 print $query;
 

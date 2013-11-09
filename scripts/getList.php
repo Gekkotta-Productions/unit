@@ -1,6 +1,6 @@
 <?php
-$objConnect = mysql_connect("localhost","root","");
-$objDB = mysql_select_db("knits");
+$objConnect = new MongoClient("mongodb://$root:$pass@172.26.13.13");
+$objDB = $objConnect -> selectDB('Server');
 
 $val = $_GET["q"];
 

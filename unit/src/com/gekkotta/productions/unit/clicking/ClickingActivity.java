@@ -31,11 +31,11 @@ public class ClickingActivity extends Activity{
 		teamName = (TextView) findViewById(R.id.tv_team_name);
 		playerScore = (TextView) findViewById(R.id.tv_score);
 		//Get the team name from a cache or something, this way the user does not need to be online
-		String name = setting.getString("teamName", "unit.");
+		String name = setting.getString("TeamName", "unit.");
 		teamName.setText(name);
 		
 		//Get the score from cache of where they left off last time
-		score = setting.getInt("score", 0);
+		score = setting.getInt("Score", 0);
 		playerScore.setText(""+score);		
 		
 		bumpButton.setOnClickListener(new OnClickListener() {

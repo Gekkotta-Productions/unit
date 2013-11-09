@@ -1,6 +1,10 @@
 package com.gekkotta.productions.unit.bump;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,8 +15,13 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bump.api.BumpAPIIntents;
 import com.bump.api.IBumpAPI;
@@ -24,6 +33,7 @@ public class BumpActivity extends Activity {
 	boolean bumping = false;
 	private IBumpAPI api;
 	private String PLAYERID;
+	private int TEAMID;
 	private final String key = "98883206c8c647a0bc9c4190a668a40b";
 	private IntentFilter filter;
 
@@ -59,6 +69,8 @@ public class BumpActivity extends Activity {
 			final String action = intent.getAction();
 			try {
 				if (action.equals(BumpAPIIntents.DATA_RECEIVED)) {
+					int otherID = Integer.parseInt(new String(intent
+							.getByteArrayExtra("data")));
 					Log.i("Bump Test",
 							"Received data from: "
 									+ api.userIDForChannelID(intent
@@ -67,15 +79,59 @@ public class BumpActivity extends Activity {
 							"Data: "
 									+ new String(intent
 											.getByteArrayExtra("data")));
-					//No Team - No Team: Lower ID goes first, then must return the bump for confirmation
+					//No Team - No Team: Lower ID goes first, ask to make team
+					//TODO implement getTeamID 
+					if(getTeamID(otherID)==0 && TEAMID==0 && otherID > Integer.parseInt(PLAYERID)){
+						// custom dialog
+						LayoutInflater inflater = (LayoutInflater)context.getSystemService
+							      (Context.LAYOUT_INFLATER_SERVICE);
+					    final View deleteDialogView = inflater.inflate(
+					            R.layout.dialog_new_team, null);
+					    final AlertDialog deleteDialog = new AlertDialog.Builder(context).create();
+					    deleteDialog.setView(deleteDialogView);
+					    deleteDialogView.findViewById(R.id.b_d_ok).setOnClickListener(new OnClickListener() {
+
+					        @Override
+					        public void onClick(View v) {
+					            EditText et = (EditText) deleteDialogView.findViewById(R.id.et_d_team_name);
+					            String teamName = et.getText().toString(); 
+					            if(isEmailValid(teamName)){
+					            	
+					            	//if(nameUnique){
+					            	//TODO Upload to Server and store
+					            	//}
+					            	deleteDialog.dismiss();
+					            }
+					            else{
+					            	Toast.makeText(v.getContext(),"Invalid Name", Toast.LENGTH_LONG).show();
+					            }
+					            
+					        }
+					    });
+					    deleteDialogView.findViewById(R.id.b_d_cancel).setOnClickListener(new OnClickListener() {
+
+					        @Override
+					        public void onClick(View v) {
+					            deleteDialog.dismiss();
+					        }
+					    });
+					    deleteDialog.show();
+					}
 					
-					//Team - No Team: Team person is asked if they want to accept NoTeam person, then they return the bump for NoTeam to accept
-					
+					//Team - No Team: NoTeam is asked if they want to join Team's team
+					else if(TEAMID==0 && getTeamID(otherID)!=0){
+						
+					}
 					//Same Team - Same Team: + Points
-					
+					else if(TEAMID==getTeamID(otherID)){
+						
+					}
 					//Different Team but Same Faction: + MORE Points
 					
 					//Different teams completely: Display Name and error message 
+					else{
+						
+					}
 				} 
 				/*
 				else if (action.equals(BumpAPIIntents.MATCHED)) {
@@ -111,6 +167,7 @@ public class BumpActivity extends Activity {
 			}
 		}
 	};
+	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -124,7 +181,7 @@ public class BumpActivity extends Activity {
 		cb.setFocusable(false);
 
 		Log.i("BumpTest", "boot");
-		PLAYERID = "1"; //
+		PLAYERID = "1"; //Get ID from Shared Pref or Server
 		filter = new IntentFilter();
 		filter.addAction(BumpAPIIntents.CHANNEL_CONFIRMED);
 		filter.addAction(BumpAPIIntents.DATA_RECEIVED);
@@ -135,6 +192,12 @@ public class BumpActivity extends Activity {
 		cb.setText("Ready To Bump");
 		status.setText("Awaiting Bump");
 	}
+
+	protected int getTeamID(int otherID) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	public void onResume() {
 		Log.i("BumpTest", "onResume");
@@ -200,6 +263,20 @@ public class BumpActivity extends Activity {
 				Context.BIND_AUTO_CREATE);
 		registerReceiver(receiver, filter);
 
+	}
+	
+	public static boolean isEmailValid(String email) {
+	    boolean isValid = false;
+
+	    String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+	    CharSequence inputStr = email;
+
+	    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(inputStr);
+	    if (matcher.matches()) {
+	        isValid = true;
+	    }
+	    return isValid;
 	}
 
 }

@@ -29,40 +29,44 @@ public final class R {
         public static final int name=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f080022;
+        public static final int action_settings=0x7f080026;
         public static final int activity_clicking=0x7f080000;
         public static final int b_BUMP=0x7f08000a;
         public static final int b_achievement=0x7f080005;
         public static final int b_bottom=0x7f080004;
         public static final int b_bump=0x7f080002;
         public static final int b_click=0x7f080003;
-        public static final int b_submit=0x7f08001d;
+        public static final int b_d_cancel=0x7f080016;
+        public static final int b_d_ok=0x7f080015;
+        public static final int b_submit=0x7f080021;
         public static final int b_team_score=0x7f080008;
         public static final int b_upgrade=0x7f080006;
         public static final int cb_status=0x7f08000f;
-        public static final int form_email=0x7f080019;
-        public static final int form_gamename=0x7f08001b;
-        public static final int form_input=0x7f080016;
-        public static final int form_input_email=0x7f08001a;
-        public static final int form_input_gamename=0x7f08001c;
-        public static final int form_input_name=0x7f080018;
-        public static final int form_name=0x7f080017;
-        public static final int form_title=0x7f080015;
+        public static final int et_d_team_name=0x7f080013;
+        public static final int form_email=0x7f08001d;
+        public static final int form_gamename=0x7f08001f;
+        public static final int form_input=0x7f08001a;
+        public static final int form_input_email=0x7f08001e;
+        public static final int form_input_gamename=0x7f080020;
+        public static final int form_input_name=0x7f08001c;
+        public static final int form_name=0x7f08001b;
+        public static final int form_title=0x7f080019;
         public static final int iv_bump=0x7f08000c;
-        public static final int lv_ts_history=0x7f080021;
+        public static final int lv_ts_history=0x7f080025;
         public static final int name=0x7f080009;
         public static final int password=0x7f080012;
+        public static final int tv_d_new_descrip=0x7f080014;
         public static final int tv_instructions=0x7f08000d;
         public static final int tv_result=0x7f080010;
         public static final int tv_score=0x7f080007;
         public static final int tv_status=0x7f08000e;
         public static final int tv_team_name=0x7f080001;
         public static final int tv_title=0x7f08000b;
-        public static final int tv_ts_date=0x7f080013;
-        public static final int tv_ts_history=0x7f080020;
-        public static final int tv_ts_name=0x7f08001e;
-        public static final int tv_ts_score=0x7f080014;
-        public static final int tv_ts_total=0x7f08001f;
+        public static final int tv_ts_date=0x7f080017;
+        public static final int tv_ts_history=0x7f080024;
+        public static final int tv_ts_name=0x7f080022;
+        public static final int tv_ts_score=0x7f080018;
+        public static final int tv_ts_total=0x7f080023;
         public static final int username=0x7f080011;
     }
     public static final class layout {
@@ -72,11 +76,12 @@ public final class R {
         public static final int activity_upgrade=0x7f030003;
         public static final int bump=0x7f030004;
         public static final int bumpoptions=0x7f030005;
-        public static final int rank_item=0x7f030006;
-        public static final int registration_rows=0x7f030007;
-        public static final int registration_screen=0x7f030008;
-        public static final int team_score=0x7f030009;
-        public static final int tutorial=0x7f03000a;
+        public static final int dialog_new_team=0x7f030006;
+        public static final int rank_item=0x7f030007;
+        public static final int registration_rows=0x7f030008;
+        public static final int registration_screen=0x7f030009;
+        public static final int team_score=0x7f03000a;
+        public static final int tutorial=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f070000;

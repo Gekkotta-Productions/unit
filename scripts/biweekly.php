@@ -11,7 +11,7 @@ while ($r = mysql_fetch_assoc($result)){
 	$query ="SELECT SUM(score) AS sum FROM Players WHERE `teamID`= $r[teamID];";
 	$return = mysql_query($query);
 	$val = mysql_fetch_assoc($return);
-	$query = "UPDATE Teams SET `score` = $val[sum] WHERE `teamID` = $r[teamID];";
+	$query = "INSERT INTO TeamScores (`teamID`,`timeStamp`,`score`) VALUES ('$r[teamID]', '$date', '$val[sum]');";
 	mysql_query($query);
 }
 

@@ -116,4 +116,10 @@ public class ClickingActivity extends Activity{
 		editor.putInt("score", score);
 		editor.commit();
 	}
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		finish();
+	}
 }

@@ -60,7 +60,7 @@ public class TeamScoreListAdapter extends BaseAdapter {
 		}
 		TextView date = (TextView)vi.findViewById(R.id.tv_ts_date);
 		date.setText("04/09/2013");
-		TextView score = (TextView)vi.findViewById(R.id.tv_score);
+		TextView score = (TextView)vi.findViewById(R.id.tv_ts_score);
 		score.setText("9011");
 		return vi;
 	}

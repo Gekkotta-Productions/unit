@@ -21,34 +21,36 @@ import com.gekkotta.productions.unit.R;
 public class BumpActivity extends Activity {
 	TextView status;
 	CheckBox cb;
+	boolean bumping = false;
 	private IBumpAPI api;
 	private String PLAYERID;
 	private final String key = "98883206c8c647a0bc9c4190a668a40b";
+	private IntentFilter filter;
+
 	private final ServiceConnection connection = new ServiceConnection() {
-	    @Override
-	    public void onServiceConnected(ComponentName className, IBinder binder) {
+		@Override
+		public void onServiceConnected(ComponentName className, IBinder binder) {
 
-	        Log.i("BumpTest", "onServiceConnected");
-	        api = IBumpAPI.Stub.asInterface(binder);
-	        new Thread() {
-	            public void run() {
-	                try {
-	                    api.configure(key,
-	                            "Andy");
-	                } catch (RemoteException e) {
-	                    Log.w("BumpTest", e);
-	                }
+			Log.i("BumpTest", "onServiceConnected");
+			api = IBumpAPI.Stub.asInterface(binder);
+			new Thread() {
+				public void run() {
+					try {
+						api.configure(key, "Andy");
+					} catch (RemoteException e) {
+						Log.w("BumpTest", e);
+					}
 
-	            }
-	        }.start();
+				}
+			}.start();
 
-	        Log.d("Bump Test", "Service connected");
-	    }
+			Log.d("Bump Test", "Service connected");
+		}
 
-	    @Override
-	    public void onServiceDisconnected(ComponentName className) {
-	        Log.d("Bump Test", "Service disconnected");
-	    }
+		@Override
+		public void onServiceDisconnected(ComponentName className) {
+			Log.d("Bump Test", "Service disconnected");
+		}
 	};
 
 	private final BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -79,9 +81,12 @@ public class BumpActivity extends Activity {
 					Log.i("Bump Test",
 							"Channel confirmed with "
 									+ api.userIDForChannelID(channelID));
+					status.setText("Success!");
 					api.send(channelID, PLAYERID.getBytes());
+
 				} else if (action.equals(BumpAPIIntents.NOT_MATCHED)) {
 					Log.i("Bump Test", "Not matched.");
+					status.setText("Please try again.");
 				} else if (action.equals(BumpAPIIntents.CONNECTED)) {
 					Log.i("Bump Test", "Connected to Bump...");
 					api.enableBumping();
@@ -96,50 +101,68 @@ public class BumpActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bump);
-		
+
 		status = (TextView) findViewById(R.id.tv_result);
 		cb = (CheckBox) findViewById(R.id.cb_status);
 		cb.setClickable(false);
 		cb.setFocusable(false);
-		bindService(new Intent(IBumpAPI.class.getName()), connection,
-				Context.BIND_AUTO_CREATE);
-	
+
 		Log.i("BumpTest", "boot");
 		PLAYERID = "1"; //
-		IntentFilter filter = new IntentFilter();
+		filter = new IntentFilter();
 		filter.addAction(BumpAPIIntents.CHANNEL_CONFIRMED);
 		filter.addAction(BumpAPIIntents.DATA_RECEIVED);
 		filter.addAction(BumpAPIIntents.NOT_MATCHED);
 		filter.addAction(BumpAPIIntents.MATCHED);
 		filter.addAction(BumpAPIIntents.CONNECTED);
-		registerReceiver(receiver, filter);
+		setConnections();
+		bumping = true;
 		cb.setChecked(true);
 		cb.setText("Ready To Bump");
 		status.setText("Awaiting Bump");
 	}
 
-	public void onStart() {
-		Log.i("BumpTest", "onStart");
-		super.onStart();
-	}
-
-	public void onRestart() {
-		Log.i("BumpTest", "onRestart");
-		super.onRestart();
-	}
-
 	public void onResume() {
 		Log.i("BumpTest", "onResume");
 		super.onResume();
+		if (!bumping) {
+			try {
+				api.enableBumping();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			bumping = true;
+		}
+
 	}
 
 	public void onPause() {
 		Log.i("BumpTest", "onPause");
+		if (bumping) {
+			try {
+				api.disableBumping();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			bumping = false;
+		}
 		super.onPause();
+
 	}
 
 	public void onStop() {
 		Log.i("BumpTest", "onStop");
+		if (bumping) {
+			try {
+				api.disableBumping();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			bumping = false;
+		}
 		super.onStop();
 	}
 
@@ -147,7 +170,22 @@ public class BumpActivity extends Activity {
 		Log.i("BumpTest", "onDestroy");
 		unbindService(connection);
 		unregisterReceiver(receiver);
-		super.onDestroy();
+		// super.onDestroy();
+		android.os.Process.killProcess(android.os.Process.myPid());
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		onDestroy();
+	}
+
+	public void setConnections() {
+		bindService(new Intent(IBumpAPI.class.getName()), connection,
+				Context.BIND_AUTO_CREATE);
+		registerReceiver(receiver, filter);
+
 	}
 
 }

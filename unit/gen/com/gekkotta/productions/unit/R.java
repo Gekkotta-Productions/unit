@@ -22,11 +22,14 @@ public final class R {
     }
     public static final class drawable {
         public static final int bump=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int name=0x7f020002;
+        public static final int bump_logo_1160x387=0x7f020001;
+        public static final int bump_logo_250x84=0x7f020002;
+        public static final int bump_logo_580x194=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int name=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
+        public static final int action_settings=0x7f080012;
         public static final int activity_clicking=0x7f080000;
         public static final int b_BUMP=0x7f080009;
         public static final int b_achievement=0x7f080005;
@@ -43,6 +46,8 @@ public final class R {
         public static final int tv_status=0x7f08000d;
         public static final int tv_team_name=0x7f080001;
         public static final int tv_title=0x7f08000a;
+        public static final int tv_ts_date=0x7f080010;
+        public static final int tv_ts_score=0x7f080011;
     }
     public static final class layout {
         public static final int activity_achievement=0x7f030000;
@@ -50,8 +55,9 @@ public final class R {
         public static final int activity_main=0x7f030002;
         public static final int activity_upgrade=0x7f030003;
         public static final int bump=0x7f030004;
-        public static final int team_score=0x7f030005;
-        public static final int tutorial=0x7f030006;
+        public static final int rank_item=0x7f030005;
+        public static final int team_score=0x7f030006;
+        public static final int tutorial=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f070000;

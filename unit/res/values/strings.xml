@@ -11,5 +11,6 @@
     <string name="player_score">NaN</string>
     <string name="achievement">Achievements</string>
     <string name="upgrade">Upgrades</string>
+    <string name="submit">Submit</string>
 
 </resources>

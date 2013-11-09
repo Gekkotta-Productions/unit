@@ -14,7 +14,7 @@ import com.gekkotta.productions.unit.R;
 public class ClickingActivity extends Activity{
 
 	int score = 0;
-	Button bumpButton, clickButton;
+	Button bumpButton, clickButton, achievementButton, upgradeButton;
 	TextView teamName, playerScore;
 
 	@Override
@@ -26,14 +26,16 @@ public class ClickingActivity extends Activity{
 		
 		bumpButton = (Button) findViewById(R.id.b_bump);
 		clickButton = (Button) findViewById(R.id.b_click);
+		achievementButton = (Button) findViewById(R.id.b_achievement);
+		upgradeButton = (Button) findViewById(R.id.b_upgrade);
 		teamName = (TextView) findViewById(R.id.tv_team_name);
 		playerScore = (TextView) findViewById(R.id.tv_score);
 		//Get the team name from a cache or something, this way the user does not need to be online
-		String name = setting.getString("teamName", "unit.");
+		String name = setting.getString("TeamName", "unit.");
 		teamName.setText(name);
 		
 		//Get the score from cache of where they left off last time
-		score = setting.getInt("score", 0);
+		score = setting.getInt("Score", 0);
 		playerScore.setText(""+score);		
 		
 		bumpButton.setOnClickListener(new OnClickListener() {
@@ -51,6 +53,24 @@ public class ClickingActivity extends Activity{
 				// TODO Auto-generated method stub
 				score++;
 				playerScore.setText(""+score);
+			}
+		});
+		
+		achievementButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent("android.intent.action.ACHIEVEMENT");
+				startActivity(i);
+			}
+		});
+		
+		upgradeButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent("android.intent.action.UPGRADE");
+				startActivity(i);
 			}
 		});
 		

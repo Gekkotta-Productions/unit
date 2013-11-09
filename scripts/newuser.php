@@ -8,7 +8,7 @@ $email = $_GET["email"];
 $teamname = $_GET["teamname"];
 
 $teamQuery = "INSERT INTO Teams(name) VALUES('$teamname')";
-$userQuery = "INSERT INTO Players(name, email, IGname) VALUES('$name','$email','$IGname')";
+$userQuery = "INSERT INTO Players(name, IGname, email) VALUES('$name','$IGname','$email')";
 
 $teamObjQuery = mysql_query($teamQuery);
 $userObjQuery = mysql_query($userQuery);

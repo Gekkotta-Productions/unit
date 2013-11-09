@@ -1,0 +1,15 @@
+http://172.26.13.13/unit/
+
+biweekly.php
+Function to create the aggregate data
+No params
+getPlayersByTeam.php
+	
+index.php
+interface.txt
+newTeam.php
+newuser.php
+player.php
+team.php
+unique.php
+update.sh

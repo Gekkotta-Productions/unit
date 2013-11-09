@@ -8,25 +8,11 @@
         android:id="@+id/tv_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/b_bump"
-        android:layout_alignBaseline="@+id/b_bump"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_score"
         android:gravity="center"
+        android:textSize="40sp"
         android:text="@string/team_name" />
-    
-    <Button
-        android:id="@+id/b_bump"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="@string/bump_button" />
-    
-    <Button
-        android:id="@+id/b_click"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/click_button" />
     
     <LinearLayout
         android:id="@+id/b_bottom"
@@ -38,35 +24,52 @@
         <Button
             android:id="@+id/b_achievement"
             android:layout_weight="1"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/achievement" />
+            android:layout_marginRight="2dp"
+            android:background="@drawable/bachiev" />
         
         <Button
             android:id="@+id/b_upgrade"
             android:layout_weight="1"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/upgrade" />
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/bupgrade" />
         
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/b_click"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:text="@string/player_score" />
 
     <Button
         android:id="@+id/b_team_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/b_bottom"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
-        android:text="Team Score" />
+        android:layout_centerVertical="true"
+        android:background="@drawable/bteamscore" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/player_score"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/b_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_team_name"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bclick" />
+
+    <Button
+        android:id="@+id/b_bump"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/b_bottom"
+        android:layout_alignRight="@+id/b_click"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/bbump" />
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -176,10 +177,10 @@ public class BumpActivity extends Activity {
 		setContentView(R.layout.bump);
 
 		status = (TextView) findViewById(R.id.tv_result);
-		cb = (CheckBox) findViewById(R.id.cb_status);
-		cb.setClickable(false);
-		cb.setFocusable(false);
-
+		TextView message = (TextView) findViewById(R.id.tv_instructions);
+		Typeface tf = Typeface.createFromAsset(getAssets(), "roboto.ttf");
+		status.setTypeface(tf);
+		message.setTypeface(tf);
 		Log.i("BumpTest", "boot");
 		PLAYERID = "1"; //Get ID from Shared Pref or Server
 		filter = new IntentFilter();
@@ -188,8 +189,6 @@ public class BumpActivity extends Activity {
 		filter.addAction(BumpAPIIntents.NOT_MATCHED);
 		setConnections();
 		bumping = true;
-		cb.setChecked(true);
-		cb.setText("Ready To Bump");
 		status.setText("Awaiting Bump");
 	}
 

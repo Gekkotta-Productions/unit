@@ -12,5 +12,8 @@
     <string name="achievement">Achievements</string>
     <string name="upgrade">Upgrades</string>
     <string name="submit">Submit</string>
+    <string name="dign">Error: IGN is invalid or already taken</string>
+    <string name="dname">Error: Name is invalid</string>
+    <string name="demail">Error: IGN is invalid or already taken</string>
 
 </resources>

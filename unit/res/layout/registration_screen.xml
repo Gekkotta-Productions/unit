@@ -3,48 +3,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <TextView
-        android:id="@+id/form_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/form_line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/form_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/form_name_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dname"
+            android:visibility="invisible" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/form_input_name"
         android:layout_width="fill_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text" />
-    
-    <TextView
-        android:id="@+id/form_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <LinearLayout
+        android:id="@+id/form_line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/form_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/form_email_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/demail"
+            android:visibility="invisible" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/form_input_email"
         android:layout_width="fill_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress" />"
-    
-    <TextView
-        android:id="@+id/form_gamename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <LinearLayout
+        android:id="@+id/form_line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/form_gamename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/form_gamename_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dign"
+            android:visibility="invisible" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/form_input_gamename"
         android:layout_width="fill_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text" />
-    
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
     <Button
         android:id="@+id/b_submit"
         android:layout_width="wrap_content"

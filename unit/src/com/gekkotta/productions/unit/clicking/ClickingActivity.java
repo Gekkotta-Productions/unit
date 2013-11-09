@@ -37,7 +37,7 @@ public class ClickingActivity extends Activity{
 		
 		//Get the score from cache of where they left off last time
 		score = setting.getInt("Score", 0);
-		playerScore.setText(""+score);		
+		playerScore.setText(""+score);
 		
 		bumpButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -86,34 +86,45 @@ public class ClickingActivity extends Activity{
 		
 	}
 	
-	/*
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		SharedPreferences setting = getSharedPreferences("SaveFile", 0);
+		String name = setting.getString("TeamName", "unit.");
+		score = setting.getInt("Score", 0);
+		playerScore.setText(""+score);
+		teamName.setText(name);
 	}
-
+	
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		SharedPreferences setting = getSharedPreferences("SaveFile", 0);
+		String name = setting.getString("TeamName", "unit.");
+		score = setting.getInt("Score", 0);
+		playerScore.setText(""+score);
+		teamName.setText(name);
 	}
-
+	
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		SharedPreferences setting = getSharedPreferences("SaveFile", 0);
+		SharedPreferences.Editor editor = setting.edit();
+		editor.putInt("Score", score);
+		editor.commit();
 	}
-	*/
 
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-		
 		SharedPreferences setting = getSharedPreferences("SaveFile", 0);
 		SharedPreferences.Editor editor = setting.edit();
-		editor.putInt("score", score);
+		editor.putInt("Score", score);
 		editor.commit();
 	}
 	@Override

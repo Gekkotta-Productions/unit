@@ -101,10 +101,8 @@ public class BumpActivity extends Activity {
 						// team
 						// TODO implement getTeamID
 
-<<<<<<< Updated upstream
 						api.disableBumping();
-=======
->>>>>>> Stashed changes
+
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater) context
 								.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -123,11 +121,6 @@ public class BumpActivity extends Activity {
 										String teamName = et.getText()
 												.toString();
 
-<<<<<<< Updated upstream
-										if (isTeamNameValid(teamName)) {
-											// TODO Upload to Server and
-											// store
-=======
 											if (isTeamNameValid(teamName)) {
 												SharedPreferences settings = getSharedPreferences(
 														"SaveFile",
@@ -141,11 +134,12 @@ public class BumpActivity extends Activity {
 												} catch (InterruptedException e) {
 												} catch (ExecutionException e) {
 												}
+												deleteDialog.dismiss();
+												finish();
 											}
->>>>>>> Stashed changes
-											deleteDialog.dismiss();
-											finish();
-										}
+
+										
+										
 
 										else {
 											Toast.makeText(v.getContext(),
@@ -181,10 +175,7 @@ public class BumpActivity extends Activity {
 
 						// Team - No Team: NoTeam is asked if they want to join
 						// Team's team
-<<<<<<< Updated upstream
 						api.disableBumping();
-=======
->>>>>>> Stashed changes
 
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater) context
@@ -229,8 +220,8 @@ public class BumpActivity extends Activity {
 
 					// Same Team - Same Team: + Points and PLAYERNAME has not
 					// bumped OTHERNAME this round
-					else if (!TEAMID.equals("0") ^ TEAMID.equals(otherID)) {
-<<<<<<< Updated upstream
+					else if (!TEAMID.equals("0") && TEAMID.equals(otherID)) {
+
 						CallServer cs = new CallServer();
 						// get address
 						String score = Integer.toString((Integer
@@ -248,12 +239,10 @@ public class BumpActivity extends Activity {
 						Toast.makeText(context,
 								"You just recieved double points!",
 								Toast.LENGTH_LONG).show();
-=======
+
 
 					}
->>>>>>> Stashed changes
 
-					}
 
 					// Different teams completely: Display Name and error
 					// message

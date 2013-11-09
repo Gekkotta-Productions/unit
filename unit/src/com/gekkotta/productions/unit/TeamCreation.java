@@ -2,12 +2,11 @@ package com.gekkotta.productions.unit;
 
 import java.util.concurrent.ExecutionException;
 
-import com.gekkotta.productions.unit.bump.CallServer;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +14,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.gekkotta.productions.unit.server.ServerData;
 
 public class TeamCreation extends Activity {
 
@@ -82,6 +83,21 @@ public class TeamCreation extends Activity {
 			}
 		}
 		return true;
+	}
+	class CallServer extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			Log.d("Andrew", ServerData.readContents(params[0]));
+			return ServerData.readContents(params[0]);
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+		}
+
 	}
 	
 }

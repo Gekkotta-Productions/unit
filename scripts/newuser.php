@@ -12,7 +12,7 @@ while($r=mysql_fetch_assoc($result)){
 	$uniqueName = in_array($IGname, $r);
 	$uniqueEmail = in_array($email, $r);
 	if($uniqueName || $uniqueEmail){
-		echo "false";
+		print false;
 		exit;
 	}
 }
@@ -20,5 +20,5 @@ while($r=mysql_fetch_assoc($result)){
 $userInput = "INSERT INTO Players(name, IGname, email) VALUES('$name','$IGname','$email')";
 
 mysql_query($userInput);
-echo "true";
+print true;
 ?>

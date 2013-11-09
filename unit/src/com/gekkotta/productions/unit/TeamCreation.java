@@ -46,6 +46,7 @@ public class TeamCreation extends Activity {
 				SharedPreferences settings = getSharedPreferences("SaveFile", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = settings.edit();
 				editor.putString("TeamName", "");
+				editor.putString("TeamId", "0");
 				editor.commit();
 				Intent i = new Intent("android.intent.action.CLICKING");
 				startActivity(i);
@@ -59,14 +60,17 @@ public class TeamCreation extends Activity {
 				if(isTeamNameValid(et.getText().toString())){
 					SharedPreferences settings = getSharedPreferences("SaveFile", Context.MODE_PRIVATE);
 					CallServer cs = new CallServer();
-					String url = ("http://172.26.13.13/unit/adjustTeam.php?teamname=" + et.getText().toString() + "&IGname=" + settings.getString("IGN", "-1"));
+					String url = ("http://172.26.13.13/unit/newTeam.php?teamname=" + et.getText().toString() + "&IGname=" + settings.getString("IGN", "-1"));
+					String test = "";
 					try {
-						cs.execute(url).get();
+						test = cs.execute(url).get();
+						Log.d("Trial Run: ", test);
 					} catch (InterruptedException e) {
 					} catch (ExecutionException e) {
 					}
 					SharedPreferences.Editor editor = settings.edit();
 					editor.putString("TeamName", et.getText().toString());
+					editor.putString("TeamId", test);
 					editor.commit();
 					Intent i = new Intent("android.intent.action.CLICKING");
 					startActivity(i);
@@ -89,7 +93,7 @@ public class TeamCreation extends Activity {
 			} catch (InterruptedException e) {
 			} catch (ExecutionException e) {
 			}
-			Log.d("Andrew", raw);
+			Log.d("", raw);
 			if (raw.contains("false")) {
 				return false;
 			}
@@ -101,8 +105,9 @@ public class TeamCreation extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			Log.d("Andrew", ServerData.readContents(params[0]));
-			return ServerData.readContents(params[0]);
+			String val = ServerData.readContents(params[0]);
+			Log.d("Team Val: ", val);
+			return val;
 		}
 
 		@Override

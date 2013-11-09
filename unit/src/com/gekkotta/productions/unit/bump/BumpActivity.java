@@ -79,6 +79,7 @@ public class BumpActivity extends Activity {
 
 					String info = new String(intent.getByteArrayExtra("data"));
 					String[] deets = info.split("/");
+					Log.d("Trial Run: ", deets[0] + " " + deets[1] + " " + deets[2]);
 					String otherNAME = deets[0];
 					final String otherTEAM = deets[1];
 					String otherID = deets[2];
@@ -254,7 +255,7 @@ public class BumpActivity extends Activity {
 
 					// Different teams completely: Display Name and error
 					// message
-					else {
+					else if(!TEAMID.equals(otherID)){
 						CallServer cs = new CallServer();
 						// get address
 						String score = Integer.toString((Integer

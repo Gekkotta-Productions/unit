@@ -22,7 +22,7 @@ Button bump;
 			public void onClick(View v) {
 				Intent i;
 				SharedPreferences settings = getSharedPreferences("SaveFile", Context.MODE_PRIVATE);
-				if(!settings.getBoolean("SAVE", false)){
+				if(!settings.getBoolean("SAVED", false)){
 					i = new Intent("android.intent.action.REGISTRATION");
 				} else {
 					i = new Intent("android.intent.action.CLICKING");

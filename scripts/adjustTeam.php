@@ -11,7 +11,6 @@ if ($teamname == "0"){
 else{
 	$teamNum = mysql_query("SELECT `teamID` FROM Teams WHERE `name` = '$teamname'");
 	$res = mysql_fetch_assoc($teamNum);
-	echo "(UPDATE Players SET `teamID` = '$res[teamID]' WHERE `IGname` = '$IGname')";
 	mysql_query("UPDATE Players SET `teamID` = '$res[teamID]' WHERE `IGname` = '$IGname'");
 }
 

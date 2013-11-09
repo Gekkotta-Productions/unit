@@ -80,7 +80,7 @@ public class BumpActivity extends Activity {
 					String info = new String(intent.getByteArrayExtra("data"));
 					String[] deets = info.split("/");
 					String otherNAME = deets[0];
-					String otherTEAM = deets[1];
+					final String otherTEAM = deets[1];
 					String otherID = deets[2];
 					Log.i("Bump Test",
 							"Received data from: "
@@ -101,7 +101,7 @@ public class BumpActivity extends Activity {
 						// team
 						// TODO implement getTeamID
 
-						api.disableBumping();
+						//api.disableBumping();
 
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater) context
@@ -146,13 +146,13 @@ public class BumpActivity extends Activity {
 													"Invalid Name",
 													Toast.LENGTH_LONG).show();
 											deleteDialog.dismiss();
-											try {
-												api.enableBumping();
-											} catch (RemoteException e) {
+											//try {
+												//api.enableBumping();
+											//} catch (RemoteException e) {
 												// TODO Auto-generated catch
 												// block
-												e.printStackTrace();
-											}
+												//e.printStackTrace();
+											//}
 										}
 
 									}
@@ -175,7 +175,7 @@ public class BumpActivity extends Activity {
 
 						// Team - No Team: NoTeam is asked if they want to join
 						// Team's team
-						api.disableBumping();
+						//api.disableBumping();
 
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater) context
@@ -188,6 +188,7 @@ public class BumpActivity extends Activity {
 						// String tm = getSharedPreferences("SaveFile",
 						// Context.MODE_PRIVATE).getString(otherTEAM, defValue);
 						TextView mssg = (TextView) findViewById(R.id.tv_d_new_descrip);
+						EditText et = (EditText) findViewById(R.id.et_d_team_name);
 
 						deleteDialog.setView(deleteDialogView);
 						deleteDialogView.findViewById(R.id.b_d_ok)
@@ -196,6 +197,13 @@ public class BumpActivity extends Activity {
 									@Override
 									public void onClick(View v) {
 										// TODO Upload to Server and store
+										CallServer cs = new CallServer();
+										String url = ("http://172.26.13.13/unit/adjustTeam.php?teamname=" + otherTEAM + "&IGname=" + PLAYERNAME);
+										try {
+											cs.execute(url).get();
+										} catch (InterruptedException e) {
+										} catch (ExecutionException e) {
+										}
 										deleteDialog.dismiss();
 										finish();
 									}
@@ -206,12 +214,12 @@ public class BumpActivity extends Activity {
 									@Override
 									public void onClick(View v) {
 										deleteDialog.dismiss();
-										try {
-											api.enableBumping();
-										} catch (RemoteException e) {
+										//try {
+											//api.enableBumping();
+										//} catch (RemoteException e) {
 											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
+											//e.printStackTrace();
+										//}
 									}
 								});
 						deleteDialog.show();

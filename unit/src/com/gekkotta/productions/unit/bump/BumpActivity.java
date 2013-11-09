@@ -76,11 +76,10 @@ public class BumpActivity extends Activity {
 			final String action = intent.getAction();
 			try {
 				if (action.equals(BumpAPIIntents.DATA_RECEIVED)) {
-					
-					String info =  new String(intent
-							.getByteArrayExtra("data"));
-					String [] deets = info.split("/");
-					String otherNAME = deets[0]; 
+
+					String info = new String(intent.getByteArrayExtra("data"));
+					String[] deets = info.split("/");
+					String otherNAME = deets[0];
 					String otherTEAM = deets[1];
 					String otherID = deets[2];
 					Log.i("Bump Test",
@@ -91,86 +90,124 @@ public class BumpActivity extends Activity {
 							"Data: "
 									+ new String(intent
 											.getByteArrayExtra("data")));
+<<<<<<< HEAD
 					//No Team - No Team: Lower ID goes first, ask to make team
 					//TODO implement getTeamID 
 					
 					if( otherID.equals("0") && TEAMID.equals("0") && otherNAME.compareTo(PLAYERNAME)>0){
+=======
+					// No Team - No Team: Lower ID goes first, ask to make team
+					// TODO implement getTeamID
+
+					if (otherTEAM.equals("0") && TEAMNAME.equals("0")
+							&& otherNAME.compareTo(PLAYERNAME) > 0) {
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 						// custom dialog
-						LayoutInflater inflater = (LayoutInflater)context.getSystemService
-							      (Context.LAYOUT_INFLATER_SERVICE);
-					    final View deleteDialogView = inflater.inflate(
-					            R.layout.dialog_new_team, null);
-					    final AlertDialog deleteDialog = new AlertDialog.Builder(context).create();
-					    deleteDialog.setView(deleteDialogView);
-					    deleteDialogView.findViewById(R.id.b_d_ok).setOnClickListener(new OnClickListener() {
+						LayoutInflater inflater = (LayoutInflater) context
+								.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+						final View deleteDialogView = inflater.inflate(
+								R.layout.dialog_new_team, null);
+						final AlertDialog deleteDialog = new AlertDialog.Builder(
+								context).create();
+						deleteDialog.setView(deleteDialogView);
+						deleteDialogView.findViewById(R.id.b_d_ok)
+								.setOnClickListener(new OnClickListener() {
 
-					        @Override
-					        public void onClick(View v) {
-					            EditText et = (EditText) deleteDialogView.findViewById(R.id.et_d_team_name);
-					            String teamName = et.getText().toString(); 
-					            if(isEmailValid(teamName)){
-					            	
-					            	if(isTeamNameValid(teamName)){
-					            	//TODO Upload to Server and store
-					            	}
-					            	deleteDialog.dismiss();
-					            }
-					            else{
-					            	Toast.makeText(v.getContext(),"Invalid Name", Toast.LENGTH_LONG).show();
-					            }
-					            
-					        }
-					    });
-					    deleteDialogView.findViewById(R.id.b_d_cancel).setOnClickListener(new OnClickListener() {
+									@Override
+									public void onClick(View v) {
+										EditText et = (EditText) deleteDialogView
+												.findViewById(R.id.et_d_team_name);
+										String teamName = et.getText()
+												.toString();
+										if (isEmailValid(teamName)) {
 
-					        @Override
-					        public void onClick(View v) {
-					            deleteDialog.dismiss();
-					        }
-					    });
-					    deleteDialog.show();
+											if (isTeamNameValid(teamName)) {
+												// TODO Upload to Server and
+												// store
+											}
+											deleteDialog.dismiss();
+										} else {
+											Toast.makeText(v.getContext(),
+													"Invalid Name",
+													Toast.LENGTH_LONG).show();
+										}
+
+									}
+								});
+						deleteDialogView.findViewById(R.id.b_d_cancel)
+								.setOnClickListener(new OnClickListener() {
+
+									@Override
+									public void onClick(View v) {
+										deleteDialog.dismiss();
+									}
+								});
+						deleteDialog.show();
 					}
+<<<<<<< HEAD
 					
 					//Team - No Team: NoTeam is asked if they want to join Team's team
 					else if(TEAMID.equals("0") && !otherID.equals("0")){
+=======
+
+					// Team - No Team: NoTeam is asked if they want to join
+					// Team's team
+					else if (TEAMNAME.equals("0") && !otherTEAM.equals("0")) {
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 
 						// custom dialog
-						LayoutInflater inflater = (LayoutInflater)context.getSystemService
-							      (Context.LAYOUT_INFLATER_SERVICE);
-					    final View deleteDialogView = inflater.inflate(
-					            R.layout.dialog_new_team, null);
-					    final AlertDialog deleteDialog = new AlertDialog.Builder(context).create();
-					    deleteDialog.setView(deleteDialogView);
-					    deleteDialogView.findViewById(R.id.b_d_ok).setOnClickListener(new OnClickListener() {
+						LayoutInflater inflater = (LayoutInflater) context
+								.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+						final View deleteDialogView = inflater.inflate(
+								R.layout.dialog_new_team, null);
+						final AlertDialog deleteDialog = new AlertDialog.Builder(
+								context).create();
+						deleteDialog.setView(deleteDialogView);
+						deleteDialogView.findViewById(R.id.b_d_ok)
+								.setOnClickListener(new OnClickListener() {
 
-					        @Override
-					        public void onClick(View v) {
-					            	//TODO Upload to Server and store
-					            	deleteDialog.dismiss();
-					        }
-					    });
-					    deleteDialogView.findViewById(R.id.b_d_cancel).setOnClickListener(new OnClickListener() {
+									@Override
+									public void onClick(View v) {
+										// TODO Upload to Server and store
+										deleteDialog.dismiss();
+									}
+								});
+						deleteDialogView.findViewById(R.id.b_d_cancel)
+								.setOnClickListener(new OnClickListener() {
 
-					        @Override
-					        public void onClick(View v) {
-					            deleteDialog.dismiss();
-					        }
-					    });
-					    deleteDialog.show();
-					
+									@Override
+									public void onClick(View v) {
+										deleteDialog.dismiss();
+									}
+								});
+						deleteDialog.show();
+
 					}
+<<<<<<< HEAD
 					//Same Team - Same Team: + Points and PLAYERNAME has not bumped OTHERNAME this round
 					else if(!TEAMID.equals("0")^TEAMID.equals(otherID)){
 						
+=======
+					// Same Team - Same Team: + Points and PLAYERNAME has not
+					// bumped OTHERNAME this round
+					else if (TEAMNAME.equals(otherTEAM)) {
+
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 					}
-					//Different Team but Same Faction: + MORE Points
-					
-					//Different teams completely: Display Name and error message 
-					else{
-						
+					// Different Team but Same Faction: + MORE Points
+
+					// Different teams completely: Display Name and error
+					// message
+					else {
+
 					}
+<<<<<<< HEAD
 				} 
 				
+=======
+				}
+
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 				else if (action.equals(BumpAPIIntents.MATCHED)) {
 					long channelID = intent
 							.getLongExtra("proposedChannelID", 0);
@@ -179,8 +216,13 @@ public class BumpActivity extends Activity {
 									+ api.userIDForChannelID(channelID));
 					api.confirm(channelID, true);
 					Log.i("Bump Test", "Confirm sent");
+<<<<<<< HEAD
 					}
 					
+=======
+				}
+
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 				else if (action.equals(BumpAPIIntents.CHANNEL_CONFIRMED)) {
 					// SENDING DATA
 					long channelID = intent.getLongExtra("channelID", 0);
@@ -188,16 +230,24 @@ public class BumpActivity extends Activity {
 							"Channel confirmed with "
 									+ api.userIDForChannelID(channelID));
 					status.setText("Success!");
+<<<<<<< HEAD
 					String deets = PLAYERNAME + "/"+TEAMNAME+"/"+TEAMID;
+=======
+					String deets = PLAYERNAME + "/" + TEAMNAME;
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 					api.send(channelID, deets.getBytes());
 
-				} 
-				
+				}
+
 				else if (action.equals(BumpAPIIntents.NOT_MATCHED)) {
 					Log.i("Bump Test", "Not matched.");
 					status.setText("Please try again");
+<<<<<<< HEAD
 				} 
 				else if (action.equals(BumpAPIIntents.CONNECTED)) {
+=======
+				} else if (action.equals(BumpAPIIntents.CONNECTED)) {
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 					Log.i("Bump Test", "Connected to Bump...");
 					api.enableBumping();
 				}
@@ -205,32 +255,44 @@ public class BumpActivity extends Activity {
 			}
 		}
 	};
-	
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bump);
-		SharedPreferences settings = getSharedPreferences("SaveFile", Context.MODE_PRIVATE);
+		SharedPreferences settings = getSharedPreferences("SaveFile",
+				Context.MODE_PRIVATE);
 		PLAYERNAME = settings.getString("Name", "-1");
 		TEAMNAME = settings.getString("TeamName", "-1");
+<<<<<<< HEAD
 		TEAMID=settings.getString("TeamId", "-1");
+=======
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 		status = (TextView) findViewById(R.id.tv_result);
 		TextView message = (TextView) findViewById(R.id.tv_instructions);
 		Typeface tf = Typeface.createFromAsset(getAssets(), "roboto.ttf");
 		status.setTypeface(tf);
+		status.setText("Initializing...");
 		message.setTypeface(tf);
 		Log.i("BumpTest", "boot");
+<<<<<<< HEAD
 		bindService(new Intent(IBumpAPI.class.getName()), connection,
 				Context.BIND_AUTO_CREATE);
+=======
+
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 		filter = new IntentFilter();
 		filter.addAction(BumpAPIIntents.CHANNEL_CONFIRMED);
 		filter.addAction(BumpAPIIntents.DATA_RECEIVED);
 		filter.addAction(BumpAPIIntents.NOT_MATCHED);
 		filter.addAction(BumpAPIIntents.MATCHED);
 		filter.addAction(BumpAPIIntents.CONNECTED);
+<<<<<<< HEAD
 		registerReceiver(receiver, filter);
+=======
+		setConnections();
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 		bumping = true;
 		status.setText("Awaiting Bump");
 	}
@@ -238,7 +300,7 @@ public class BumpActivity extends Activity {
 	protected int getTeamID(int otherID) {
 		// TODO Auto-generated method stub
 		CallServer cs = new CallServer();
-		//get address
+		// get address
 		url = ("");
 		String raw = "";
 		try {
@@ -248,7 +310,6 @@ public class BumpActivity extends Activity {
 		}
 		return Integer.parseInt(raw);
 	}
-
 
 	public void onResume() {
 		Log.i("BumpTest", "onResume");
@@ -309,21 +370,32 @@ public class BumpActivity extends Activity {
 		onDestroy();
 	}
 
-	public static boolean isEmailValid(String email) {
-	    boolean isValid = false;
+<<<<<<< HEAD
+=======
+	public void setConnections() {
+		bindService(new Intent(IBumpAPI.class.getName()), connection,
+				Context.BIND_AUTO_CREATE);
+		registerReceiver(receiver, filter);
 
-	    String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-	    CharSequence inputStr = email;
-
-	    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-	    Matcher matcher = pattern.matcher(inputStr);
-	    if (matcher.matches()) {
-	        isValid = true;
-	    }
-	    return isValid;
 	}
+
+>>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
+	public static boolean isEmailValid(String email) {
+		boolean isValid = false;
+
+		String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+		CharSequence inputStr = email;
+
+		Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(inputStr);
+		if (matcher.matches()) {
+			isValid = true;
+		}
+		return isValid;
+	}
+
 	public static boolean isTeamNameValid(String IGN) {
-		if(IGN.isEmpty()){
+		if (IGN.isEmpty()) {
 			return false;
 		} else {
 			CallServer cs = new CallServer();
@@ -352,10 +424,10 @@ class CallServer extends AsyncTask<String, Void, String> {
 		Log.d("Andrew", ServerData.readContents(params[0]));
 		return ServerData.readContents(params[0]);
 	}
-	
+
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
 	}
-	
+
 }

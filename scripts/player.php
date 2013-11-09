@@ -7,10 +7,10 @@ $val = $_GET["id"];
 $query = "";
 
 if ($val == "a"){
-	$query = db.Server.find();
+	$query = db.Players.find();
 }
 else {
-	$query = db.Server.find({PlayerID: $val});
+	$query = db.Players.find({PlayerID: $val});
 }
 print $query;
 

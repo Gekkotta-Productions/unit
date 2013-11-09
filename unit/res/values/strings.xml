@@ -14,7 +14,7 @@
     <string name="submit">Submit</string>
     <string name="dign">Error: IGN is invalid or already taken</string>
     <string name="dname">Error: Name is invalid</string>
-    <string name="demail">Error: IGN is invalid or already taken</string>
+    <string name="demail">Error: Email is invalid or already taken</string>
     <string name="teamScore">Team Score</string>
 
 </resources>

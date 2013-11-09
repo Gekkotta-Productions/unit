@@ -110,6 +110,19 @@ public class Registration extends Activity {
 			Matcher matcher = pattern.matcher(inputStr);
 			if (!matcher.matches()) {
 				return false;
+			} else {
+				CallServer cs = new CallServer();
+				url = ("http://172.26.13.13/unit/unique.php?q=" + email + "&f=email&table=Players");
+				String raw = "";
+				try {
+					raw = cs.execute(url).get();
+				} catch (InterruptedException e) {
+				} catch (ExecutionException e) {
+				}
+				Log.d("Andrew", raw);
+				if (raw.contains("false")) {
+					return false;
+				}
 			}
 		}
 		return true;
@@ -135,7 +148,7 @@ public class Registration extends Activity {
 			} catch (ExecutionException e) {
 			}
 			Log.d("Andrew", raw);
-			if (raw.equals("false")) {
+			if (raw.contains("false")) {
 				return false;
 			}
 		}
@@ -149,8 +162,9 @@ class CallServer extends AsyncTask<String, Void, String> {
 	@Override
 	protected String doInBackground(String... params) {
 		// TODO Auto-generated method stub
-		Log.d("Andrew", ServerData.readContents(params[0]));
-		return ServerData.readContents(params[0]);
+		String strang = ServerData.readContents(params[0]);
+		Log.d("Andrew", strang);
+		return strang;
 	}
 	
 	@Override

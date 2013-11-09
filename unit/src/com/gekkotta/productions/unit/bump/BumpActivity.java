@@ -67,7 +67,18 @@ public class BumpActivity extends Activity {
 							"Data: "
 									+ new String(intent
 											.getByteArrayExtra("data")));
-				} else if (action.equals(BumpAPIIntents.MATCHED)) {
+					//No Team - No Team: Lower ID goes first, then must return the bump for confirmation
+					
+					//Team - No Team: Team person is asked if they want to accept NoTeam person, then they return the bump for NoTeam to accept
+					
+					//Same Team - Same Team: + Points
+					
+					//Different Team but Same Faction: + MORE Points
+					
+					//Different teams completely: Display Name and error message 
+				} 
+				/*
+				else if (action.equals(BumpAPIIntents.MATCHED)) {
 					long channelID = intent
 							.getLongExtra("proposedChannelID", 0);
 					Log.i("Bump Test",
@@ -75,7 +86,9 @@ public class BumpActivity extends Activity {
 									+ api.userIDForChannelID(channelID));
 					api.confirm(channelID, true);
 					Log.i("Bump Test", "Confirm sent");
-				} else if (action.equals(BumpAPIIntents.CHANNEL_CONFIRMED)) {
+					}
+					*/
+				else if (action.equals(BumpAPIIntents.CHANNEL_CONFIRMED)) {
 					// SENDING DATA
 					long channelID = intent.getLongExtra("channelID", 0);
 					Log.i("Bump Test",
@@ -84,13 +97,16 @@ public class BumpActivity extends Activity {
 					status.setText("Success!");
 					api.send(channelID, PLAYERID.getBytes());
 
-				} else if (action.equals(BumpAPIIntents.NOT_MATCHED)) {
+				} 
+				
+				else if (action.equals(BumpAPIIntents.NOT_MATCHED)) {
 					Log.i("Bump Test", "Not matched.");
-					status.setText("Please try again.");
-				} else if (action.equals(BumpAPIIntents.CONNECTED)) {
+					status.setText("Please try again");
+				} 
+				/*else if (action.equals(BumpAPIIntents.CONNECTED)) {
 					Log.i("Bump Test", "Connected to Bump...");
 					api.enableBumping();
-				}
+				}*/
 			} catch (RemoteException e) {
 			}
 		}
@@ -113,8 +129,6 @@ public class BumpActivity extends Activity {
 		filter.addAction(BumpAPIIntents.CHANNEL_CONFIRMED);
 		filter.addAction(BumpAPIIntents.DATA_RECEIVED);
 		filter.addAction(BumpAPIIntents.NOT_MATCHED);
-		filter.addAction(BumpAPIIntents.MATCHED);
-		filter.addAction(BumpAPIIntents.CONNECTED);
 		setConnections();
 		bumping = true;
 		cb.setChecked(true);

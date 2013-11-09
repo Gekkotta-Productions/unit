@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="#282828"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_ts_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="Team Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/tv_ts_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_ts_total"
+        android:layout_alignBottom="@+id/tv_ts_total"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:text="99999"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/tv_ts_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_ts_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:text="Total"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/tv_ts_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_ts_score"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="History"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_ts_total"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/tv_ts_score"
+        android:layout_below="@+id/tv_ts_history"
+        android:layout_marginTop="16dp" >
+
+        <ListView
+            android:id="@+id/lv_ts_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp" >
+
+        </ListView>
+
+    </FrameLayout>
+
+</RelativeLayout>

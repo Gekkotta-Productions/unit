@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_clicking" >
+    
+    <TextView
+        android:id="@+id/tv_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/b_bump"
+        android:layout_alignBaseline="@+id/b_bump"
+        android:gravity="center"
+        android:text="@string/team_name" />
+    
+    <Button
+        android:id="@+id/b_bump"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/bump_button" />
+    
+    <Button
+        android:id="@+id/b_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/click_button" />
+    
+    <LinearLayout
+        android:id="@+id/b_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <Button
+            android:id="@+id/b_achievement"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/achievement" />
+        
+        <Button
+            android:id="@+id/b_upgrade"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/upgrade" />
+        
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/b_click"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="@string/player_score" />
+
+    <Button
+        android:id="@+id/b_team_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/b_bottom"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:text="Team Score" />
+
+</RelativeLayout>

@@ -58,6 +58,13 @@ public class TeamCreation extends Activity {
 				tv_hidden.setVisibility(TextView.GONE);
 				if(isTeamNameValid(et.getText().toString())){
 					SharedPreferences settings = getSharedPreferences("SaveFile", Context.MODE_PRIVATE);
+					CallServer cs = new CallServer();
+					String url = ("http://172.26.13.13/unit/adjustTeam.php?teamname=" + et.getText().toString() + "&IGname=" + settings.getString("IGN", "-1"));
+					try {
+						cs.execute(url).get();
+					} catch (InterruptedException e) {
+					} catch (ExecutionException e) {
+					}
 					SharedPreferences.Editor editor = settings.edit();
 					editor.putString("TeamName", et.getText().toString());
 					editor.commit();

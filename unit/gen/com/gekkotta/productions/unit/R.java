@@ -29,27 +29,29 @@ public final class R {
         public static final int name=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f080024;
+        public static final int action_settings=0x7f080026;
         public static final int activity_clicking=0x7f080000;
         public static final int b_BUMP=0x7f08000a;
         public static final int b_achievement=0x7f080005;
         public static final int b_bottom=0x7f080004;
         public static final int b_bump=0x7f080002;
         public static final int b_click=0x7f080003;
-        public static final int b_submit=0x7f08001c;
+        public static final int b_submit=0x7f08001e;
         public static final int b_team_score=0x7f080008;
         public static final int b_upgrade=0x7f080006;
         public static final int cb_status=0x7f080010;
-        public static final int form_email=0x7f080016;
-        public static final int form_gamename=0x7f080019;
-        public static final int form_gamename_warning=0x7f08001a;
-        public static final int form_input_email=0x7f080017;
-        public static final int form_input_gamename=0x7f08001b;
-        public static final int form_input_name=0x7f080015;
-        public static final int form_line=0x7f080018;
-        public static final int form_name=0x7f080014;
+        public static final int form_email=0x7f080018;
+        public static final int form_email_warning=0x7f080019;
+        public static final int form_gamename=0x7f08001b;
+        public static final int form_gamename_warning=0x7f08001c;
+        public static final int form_input_email=0x7f08001a;
+        public static final int form_input_gamename=0x7f08001d;
+        public static final int form_input_name=0x7f080017;
+        public static final int form_line=0x7f080014;
+        public static final int form_name=0x7f080015;
+        public static final int form_name_warning=0x7f080016;
         public static final int iv_bump=0x7f08000d;
-        public static final int lv_ts_history=0x7f080020;
+        public static final int lv_ts_history=0x7f080022;
         public static final int name=0x7f080009;
         public static final int tv_instructions=0x7f08000e;
         public static final int tv_result=0x7f080011;
@@ -58,14 +60,14 @@ public final class R {
         public static final int tv_team_name=0x7f080001;
         public static final int tv_title=0x7f08000c;
         public static final int tv_ts_date=0x7f080012;
-        public static final int tv_ts_history=0x7f08001f;
-        public static final int tv_ts_name=0x7f08001d;
+        public static final int tv_ts_history=0x7f080021;
+        public static final int tv_ts_name=0x7f08001f;
         public static final int tv_ts_score=0x7f080013;
-        public static final int tv_ts_total=0x7f08001e;
+        public static final int tv_ts_total=0x7f080020;
         public static final int upgrade_list=0x7f08000b;
-        public static final int upgrade_list_cost=0x7f080023;
-        public static final int upgrade_list_image=0x7f080021;
-        public static final int upgrade_list_name=0x7f080022;
+        public static final int upgrade_list_cost=0x7f080025;
+        public static final int upgrade_list_image=0x7f080023;
+        public static final int upgrade_list_name=0x7f080024;
     }
     public static final class layout {
         public static final int activity_achievement=0x7f030000;
@@ -88,7 +90,9 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int bump_button=0x7f050005;
         public static final int click_button=0x7f050006;
-        public static final int duplicate=0x7f05000b;
+        public static final int demail=0x7f05000d;
+        public static final int dign=0x7f05000b;
+        public static final int dname=0x7f05000c;
         public static final int hello_world=0x7f050002;
         public static final int name=0x7f050003;
         public static final int player_score=0x7f050007;

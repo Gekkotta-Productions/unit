@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import android.util.Log;
+
 public class ServerData {
 	
 	public static String readContents(String url) {
@@ -14,6 +16,7 @@ public class ServerData {
 		httpcon = getConnection(url);
 		
 		if(httpcon == null){
+			Log.d("Andrew", "Null connection");
 			return null;
 		}
 		
@@ -36,10 +39,13 @@ public class ServerData {
 		HttpURLConnection httpcon = null;
 		
 		try {
+			Log.d("Andrew", url);
 			httpcon = (HttpURLConnection) new URL(url).openConnection();
 			httpcon.setReadTimeout(30000);
 		} catch (MalformedURLException e) {
+			Log.e("getConnection()", "Invalid URL: " + e.toString());
 		} catch (IOException e) {
+			Log.e("getConnection()", "Could not connect: " + e.toString());
 		}
 		
 		return httpcon;

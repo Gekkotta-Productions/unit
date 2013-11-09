@@ -2,12 +2,16 @@
 $objConnect = mysql_connect("localhost","root","");
 $objDB = mysql_select_db("unit");
 
+$IGname = $_GET["IGname"];
+$name = $_GET["name"];
+$email = $_GET["email"];
 $teamname = $_GET["teamname"];
-$query = "INSERT INTO Teams("name") VALUES($teamname)";
-$objQuery = mysql_query($query);
-print '{"unit":';
+
+$teamquery = "INSERT INTO Teams(`name`) VALUES($teamname)";
+$objQuery = mysql_query($teamquery);
+
+
 print json_encode($objQuery);
-print '}';
 
 
 /*

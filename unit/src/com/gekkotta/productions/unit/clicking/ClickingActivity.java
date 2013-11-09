@@ -1,6 +1,7 @@
 package com.gekkotta.productions.unit.clicking;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -39,8 +40,8 @@ public class ClickingActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//Intent i = new Intent();
-				//startActivity(i);
+				Intent i = new Intent("android.intent.action.BUMP");
+				startActivity(i);
 			}
 		});
 		

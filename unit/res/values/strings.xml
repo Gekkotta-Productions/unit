@@ -9,5 +9,7 @@
     <string name="bump_button">Bump</string>
     <string name="click_button">Click</string>
     <string name="player_score">NaN</string>
+    <string name="achievement">Achievements</string>
+    <string name="upgrade">Upgrades</string>
 
 </resources>

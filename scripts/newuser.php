@@ -3,7 +3,7 @@ $objConnect = mysql_connect("localhost","root","");
 $objDB = mysql_select_db("unit");
 
 $teamname = $_GET["teamname"];
-$query = "INSERT INTO Teams($teamname)";
+$query = "INSERT INTO Teams("name") VALUES($teamname)";
 $objQuery = mysql_query($query);
 print '{"unit":';
 print json_encode($objQuery);

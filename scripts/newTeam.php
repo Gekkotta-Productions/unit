@@ -9,17 +9,19 @@ $result = mysql_query($teamQuery);
 while($r=mysql_fetch_assoc($result)){
 	$uniqueTeam=  in_array($teamname, $r);
 		if($uniqueTeam == true){
-		print FALSE;
+		print "FALSE";
 	exit;
 	}
 }
 
-$teamInput = "INSERT INTO Teams(name) VALUES('$teamname')";
-
+$teamInput = "INSERT INTO Teams(name) VALUES('$teamname');";
 $teamObjQuery = mysql_query($teamInput);
-$teamNumQuery = "SELECT LAST(teamID) FROM Teams";
+
+$teamNumQuery = "SELECT `teamID` FROM Teams ORDER BY `teamID` DESC LIMIT 1;";
 $teamNum = mysql_query($teamNumQuery);
-$result = mysql_fetch_assoc($teamNum);
-mysql_query("UPDATE Players SET `teamID` = $result[teamID], WHERE `IGname` = $IGname");
-print true;
+$res = mysql_fetch_assoc($teamNum);
+
+$query = "UPDATE Players SET `teamID` = $res[teamID] WHERE `IGname` = '$IGname';";
+mysql_query($query);
+print "true";
 ?>

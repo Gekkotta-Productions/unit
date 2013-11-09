@@ -2,20 +2,17 @@
 $objConnect = mysql_connect("localhost","root","");
 $objDB = mysql_select_db("unit");
 
-$IGname = $_GET["IGname"];
-$name = $_GET["name"];
-$email = $_GET["email"];
+$f = $_GET["f"];
+$q = $_GET["q"];
+$table = $_GET["table"];
 
-$userQuery = "SELECT IGname, email FROM Players";
+$userQuery = "SELECT $f FROM $table";
 $result = mysql_query($userQuery);
 while($r = mysql_fetch_assoc($result)){
-	$uniqueName = in_array($IGname, $r);
-	$uniqueEmail = in_array($email, $r);
-	if($uniqueName || $uniqueEmail){
+	if(in_array($q, $r)){
 		echo "false";
 		exit;
 	}
 }
-mysql_query($userInput);
 echo "true";
 ?>

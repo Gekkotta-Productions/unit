@@ -25,6 +25,7 @@ public class BumpActivity extends Activity {
 	private IBumpAPI api;
 	private ServiceConnection connection;
 	private  BroadcastReceiver receiver;
+	private final String key = "98883206c8c647a0bc9c4190a668a40b";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -42,8 +43,8 @@ public class BumpActivity extends Activity {
 		        new Thread() {
 		            public void run() {
 		                try {
-		                    api.configure("API_KEY",
-		                            "Bump User");
+		                    api.configure(key,
+		                            "Andrew Yiu");
 		                } catch (RemoteException e) {
 		                    Log.w("BumpTest", e);
 		                }

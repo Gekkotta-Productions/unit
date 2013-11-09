@@ -30,24 +30,7 @@ public class TeamScoreListAdapter extends BaseAdapter {
 	public TeamScoreListAdapter(Activity a) {
 		c = a;
 		prefs = PreferenceManager.getDefaultSharedPreferences(c);
-		file = new File(c.getDir("data", c.MODE_PRIVATE), "projItemList");
-		try {
-			ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file));
-			projItems = (ArrayList) inputStream.readObject();
-			numItems = projItems.size();
-		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		numItems = 5;
 	}
 	
 	@Override

@@ -14,7 +14,7 @@ import com.gekkotta.productions.unit.R;
 public class ClickingActivity extends Activity{
 
 	int score = 0;
-	Button bumpButton, clickButton, achievementButton, upgradeButton;
+	Button bumpButton, clickButton, achievementButton, upgradeButton,teamScoreButton;
 	TextView teamName, playerScore;
 
 	@Override
@@ -28,6 +28,7 @@ public class ClickingActivity extends Activity{
 		clickButton = (Button) findViewById(R.id.b_click);
 		achievementButton = (Button) findViewById(R.id.b_achievement);
 		upgradeButton = (Button) findViewById(R.id.b_upgrade);
+		teamScoreButton = (Button) findViewById(R.id.b_team_score);
 		teamName = (TextView) findViewById(R.id.tv_team_name);
 		playerScore = (TextView) findViewById(R.id.tv_score);
 		//Get the team name from a cache or something, this way the user does not need to be online
@@ -70,6 +71,15 @@ public class ClickingActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent i = new Intent("android.intent.action.UPGRADE");
+				startActivity(i);
+			}
+		});
+		
+		teamScoreButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent("android.intent.action.TEAMSCORE");
 				startActivity(i);
 			}
 		});

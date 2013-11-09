@@ -60,4 +60,13 @@
         android:layout_marginBottom="10dp"
         android:text="@string/player_score" />
 
+    <Button
+        android:id="@+id/b_team_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/b_bottom"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:text="Team Score" />
+
 </RelativeLayout>

@@ -1,19 +1,28 @@
 <?php
-$objConnect = new MongoClient("mongodb://localhost");
-$db = "Server";
-$objDB = $objConnect->$db;
-$collection = $db->"Players";
+$objConnect = mysql_connect("localhost","root","");
+$objDB = mysql_select_db("unit");
 
-$val = $_GET["id"];
+$id = $_GET["id"];
 
 $query = "";
 
-if ($val == "a"){
-	$query = $collection->find();
+if ($id == "a"){
+	$query = "SELECT * FROM Players";
 }
 else {
-	$query = $collection->find({"playerID": $val});
+	$query = "SELECT * FROM Players WHERE `playerID` = $id";
 }
-print $query;
+
+$objQuery = mysql_query($query);
+
+$rows = array();
+
+while ($r = mysql_fetch_assoc($objQuery)){
+	$rows[] = $r;
+}
+
+print '{"unit":';
+print json_encode($rows);
+print '}';
 
 ?>

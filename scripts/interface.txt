@@ -1,15 +1,31 @@
 http://172.26.13.13/unit/
 
 biweekly.php
-Function to create the aggregate data
-No params
+	Function to create the aggregate data
+	No params
+
 getPlayersByTeam.php
-	
-index.php
-interface.txt
+	Funtion to get all players that are in a team
+	Takes Team id Number in "id" get method	
+
 newTeam.php
+	Function to create a new team
+	Takes "teamname" (string) and "IGname" (string) which is a player name
+
 newuser.php
+	Function to create a new user
+	Takes "name" (string), "email" (string), "IGname", (string), takes get.
+
 player.php
+	Function get players by ID or all
+	Takes "id" (int) and supplies that ID, or takes "id" - "a" to supply all users
+
 team.php
+	Function get teams by ID or all
+	Takes "id" (int) and supplies that ID user. Or takes "a" and supplies all teams
+
 unique.php
-update.sh
+	Function that checks if parameter is unique
+		"q" (string), which is the value you want to check,
+		"f" (string) which is the field you want to check against,
+		"table" (string), which is the table you want to search in.

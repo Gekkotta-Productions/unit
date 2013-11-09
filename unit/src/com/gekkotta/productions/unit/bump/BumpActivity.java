@@ -40,6 +40,7 @@ public class BumpActivity extends Activity {
 	private IBumpAPI api;
 	private String PLAYERNAME;
 	private String TEAMNAME;
+	private String TEAMID;
 	private final String key = "98883206c8c647a0bc9c4190a668a40b";
 	private IntentFilter filter;
 
@@ -81,6 +82,7 @@ public class BumpActivity extends Activity {
 					String [] deets = info.split("/");
 					String otherNAME = deets[0]; 
 					String otherTEAM = deets[1];
+					String otherID = deets[2];
 					Log.i("Bump Test",
 							"Received data from: "
 									+ api.userIDForChannelID(intent
@@ -92,7 +94,7 @@ public class BumpActivity extends Activity {
 					//No Team - No Team: Lower ID goes first, ask to make team
 					//TODO implement getTeamID 
 					
-					if( otherTEAM.equals("0") && TEAMNAME.equals("0") && otherNAME.compareTo(PLAYERNAME)>0){
+					if( otherID.equals("0") && TEAMID.equals("0") && otherNAME.compareTo(PLAYERNAME)>0){
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater)context.getSystemService
 							      (Context.LAYOUT_INFLATER_SERVICE);
@@ -130,7 +132,7 @@ public class BumpActivity extends Activity {
 					}
 					
 					//Team - No Team: NoTeam is asked if they want to join Team's team
-					else if(TEAMNAME.equals("0") && !otherTEAM.equals("0")){
+					else if(TEAMID.equals("0") && !otherID.equals("0")){
 
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater)context.getSystemService
@@ -158,7 +160,7 @@ public class BumpActivity extends Activity {
 					
 					}
 					//Same Team - Same Team: + Points and PLAYERNAME has not bumped OTHERNAME this round
-					else if(TEAMNAME.equals(otherTEAM)){
+					else if(!TEAMID.equals("0")^TEAMID.equals(otherID)){
 						
 					}
 					//Different Team but Same Faction: + MORE Points
@@ -168,7 +170,7 @@ public class BumpActivity extends Activity {
 						
 					}
 				} 
-				/*
+				
 				else if (action.equals(BumpAPIIntents.MATCHED)) {
 					long channelID = intent
 							.getLongExtra("proposedChannelID", 0);
@@ -178,7 +180,7 @@ public class BumpActivity extends Activity {
 					api.confirm(channelID, true);
 					Log.i("Bump Test", "Confirm sent");
 					}
-					*/
+					
 				else if (action.equals(BumpAPIIntents.CHANNEL_CONFIRMED)) {
 					// SENDING DATA
 					long channelID = intent.getLongExtra("channelID", 0);
@@ -186,7 +188,7 @@ public class BumpActivity extends Activity {
 							"Channel confirmed with "
 									+ api.userIDForChannelID(channelID));
 					status.setText("Success!");
-					String deets = PLAYERNAME + "/"+TEAMNAME;
+					String deets = PLAYERNAME + "/"+TEAMNAME+"/"+TEAMID;
 					api.send(channelID, deets.getBytes());
 
 				} 
@@ -195,10 +197,10 @@ public class BumpActivity extends Activity {
 					Log.i("Bump Test", "Not matched.");
 					status.setText("Please try again");
 				} 
-				/*else if (action.equals(BumpAPIIntents.CONNECTED)) {
+				else if (action.equals(BumpAPIIntents.CONNECTED)) {
 					Log.i("Bump Test", "Connected to Bump...");
 					api.enableBumping();
-				}*/
+				}
 			} catch (RemoteException e) {
 			}
 		}
@@ -212,19 +214,23 @@ public class BumpActivity extends Activity {
 		setContentView(R.layout.bump);
 		SharedPreferences settings = getSharedPreferences("SaveFile", Context.MODE_PRIVATE);
 		PLAYERNAME = settings.getString("Name", "-1");
-				TEAMNAME = settings.getString("TeamName", "-1");
+		TEAMNAME = settings.getString("TeamName", "-1");
+		TEAMID=settings.getString("TeamId", "-1");
 		status = (TextView) findViewById(R.id.tv_result);
 		TextView message = (TextView) findViewById(R.id.tv_instructions);
 		Typeface tf = Typeface.createFromAsset(getAssets(), "roboto.ttf");
 		status.setTypeface(tf);
 		message.setTypeface(tf);
 		Log.i("BumpTest", "boot");
-		
+		bindService(new Intent(IBumpAPI.class.getName()), connection,
+				Context.BIND_AUTO_CREATE);
 		filter = new IntentFilter();
 		filter.addAction(BumpAPIIntents.CHANNEL_CONFIRMED);
 		filter.addAction(BumpAPIIntents.DATA_RECEIVED);
 		filter.addAction(BumpAPIIntents.NOT_MATCHED);
-		setConnections();
+		filter.addAction(BumpAPIIntents.MATCHED);
+		filter.addAction(BumpAPIIntents.CONNECTED);
+		registerReceiver(receiver, filter);
 		bumping = true;
 		status.setText("Awaiting Bump");
 	}
@@ -303,13 +309,6 @@ public class BumpActivity extends Activity {
 		onDestroy();
 	}
 
-	public void setConnections() {
-		bindService(new Intent(IBumpAPI.class.getName()), connection,
-				Context.BIND_AUTO_CREATE);
-		registerReceiver(receiver, filter);
-
-	}
-	
 	public static boolean isEmailValid(String email) {
 	    boolean isValid = false;
 

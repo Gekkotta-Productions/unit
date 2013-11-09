@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -85,7 +86,7 @@ public class Registration extends Activity {
 					} catch (ExecutionException e) {
 					}
 					SharedPreferences settings = getSharedPreferences(
-							"SaveFile", 0);
+							"SaveFile", Context.MODE_PRIVATE);
 					SharedPreferences.Editor editor = settings.edit();
 					editor.putString("Name", a);
 					editor.putString("Email", b);

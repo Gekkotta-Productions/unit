@@ -1,5 +1,6 @@
 package com.gekkotta.productions.unit.bump;
 
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,7 +12,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -27,14 +30,16 @@ import android.widget.Toast;
 import com.bump.api.BumpAPIIntents;
 import com.bump.api.IBumpAPI;
 import com.gekkotta.productions.unit.R;
+import com.gekkotta.productions.unit.server.ServerData;
 
 public class BumpActivity extends Activity {
 	TextView status;
 	CheckBox cb;
+	String url;
 	boolean bumping = false;
 	private IBumpAPI api;
-	private String PLAYERID;
-	private int TEAMID;
+	private String PLAYERNAME;
+	private String TEAMNAME;
 	private final String key = "98883206c8c647a0bc9c4190a668a40b";
 	private IntentFilter filter;
 
@@ -70,8 +75,12 @@ public class BumpActivity extends Activity {
 			final String action = intent.getAction();
 			try {
 				if (action.equals(BumpAPIIntents.DATA_RECEIVED)) {
-					int otherID = Integer.parseInt(new String(intent
-							.getByteArrayExtra("data")));
+					
+					String info =  new String(intent
+							.getByteArrayExtra("data"));
+					String [] deets = info.split("/");
+					String otherNAME = deets[0]; 
+					String otherTEAM = deets[1];
 					Log.i("Bump Test",
 							"Received data from: "
 									+ api.userIDForChannelID(intent
@@ -82,7 +91,8 @@ public class BumpActivity extends Activity {
 											.getByteArrayExtra("data")));
 					//No Team - No Team: Lower ID goes first, ask to make team
 					//TODO implement getTeamID 
-					if(getTeamID(otherID)==0 && TEAMID==0 && otherID > Integer.parseInt(PLAYERID)){
+					
+					if( otherTEAM.equals("0") && TEAMNAME.equals("0") && otherNAME.compareTo(PLAYERNAME)>0){
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater)context.getSystemService
 							      (Context.LAYOUT_INFLATER_SERVICE);
@@ -98,9 +108,9 @@ public class BumpActivity extends Activity {
 					            String teamName = et.getText().toString(); 
 					            if(isEmailValid(teamName)){
 					            	
-					            	//if(nameUnique){
+					            	if(isTeamNameValid(teamName)){
 					            	//TODO Upload to Server and store
-					            	//}
+					            	}
 					            	deleteDialog.dismiss();
 					            }
 					            else{
@@ -120,11 +130,35 @@ public class BumpActivity extends Activity {
 					}
 					
 					//Team - No Team: NoTeam is asked if they want to join Team's team
-					else if(TEAMID==0 && getTeamID(otherID)!=0){
-						
+					else if(TEAMNAME.equals("0") && !otherTEAM.equals("0")){
+
+						// custom dialog
+						LayoutInflater inflater = (LayoutInflater)context.getSystemService
+							      (Context.LAYOUT_INFLATER_SERVICE);
+					    final View deleteDialogView = inflater.inflate(
+					            R.layout.dialog_new_team, null);
+					    final AlertDialog deleteDialog = new AlertDialog.Builder(context).create();
+					    deleteDialog.setView(deleteDialogView);
+					    deleteDialogView.findViewById(R.id.b_d_ok).setOnClickListener(new OnClickListener() {
+
+					        @Override
+					        public void onClick(View v) {
+					            	//TODO Upload to Server and store
+					            	deleteDialog.dismiss();
+					        }
+					    });
+					    deleteDialogView.findViewById(R.id.b_d_cancel).setOnClickListener(new OnClickListener() {
+
+					        @Override
+					        public void onClick(View v) {
+					            deleteDialog.dismiss();
+					        }
+					    });
+					    deleteDialog.show();
+					
 					}
-					//Same Team - Same Team: + Points
-					else if(TEAMID==getTeamID(otherID)){
+					//Same Team - Same Team: + Points and PLAYERNAME has not bumped OTHERNAME this round
+					else if(TEAMNAME.equals(otherTEAM)){
 						
 					}
 					//Different Team but Same Faction: + MORE Points
@@ -152,7 +186,8 @@ public class BumpActivity extends Activity {
 							"Channel confirmed with "
 									+ api.userIDForChannelID(channelID));
 					status.setText("Success!");
-					api.send(channelID, PLAYERID.getBytes());
+					String deets = PLAYERNAME + "/"+TEAMNAME;
+					api.send(channelID, deets.getBytes());
 
 				} 
 				
@@ -175,14 +210,16 @@ public class BumpActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bump);
-
+		SharedPreferences settings = getSharedPreferences("SaveFile", Context.MODE_PRIVATE);
+		PLAYERNAME = settings.getString("Name", "-1");
+				TEAMNAME = settings.getString("TeamName", "-1");
 		status = (TextView) findViewById(R.id.tv_result);
 		TextView message = (TextView) findViewById(R.id.tv_instructions);
 		Typeface tf = Typeface.createFromAsset(getAssets(), "roboto.ttf");
 		status.setTypeface(tf);
 		message.setTypeface(tf);
 		Log.i("BumpTest", "boot");
-		PLAYERID = "1"; //Get ID from Shared Pref or Server
+		
 		filter = new IntentFilter();
 		filter.addAction(BumpAPIIntents.CHANNEL_CONFIRMED);
 		filter.addAction(BumpAPIIntents.DATA_RECEIVED);
@@ -194,7 +231,16 @@ public class BumpActivity extends Activity {
 
 	protected int getTeamID(int otherID) {
 		// TODO Auto-generated method stub
-		return 0;
+		CallServer cs = new CallServer();
+		//get address
+		url = ("");
+		String raw = "";
+		try {
+			raw = cs.execute(url).get();
+		} catch (InterruptedException e) {
+		} catch (ExecutionException e) {
+		}
+		return Integer.parseInt(raw);
 	}
 
 
@@ -277,5 +323,40 @@ public class BumpActivity extends Activity {
 	    }
 	    return isValid;
 	}
+	public static boolean isTeamNameValid(String IGN) {
+		if(IGN.isEmpty()){
+			return false;
+		} else {
+			CallServer cs = new CallServer();
+			String url = ("http://172.26.13.13/unit/unique.php?q=" + IGN + "&f=name&table=Teams");
+			String raw = "";
+			try {
+				raw = cs.execute(url).get();
+			} catch (InterruptedException e) {
+			} catch (ExecutionException e) {
+			}
+			Log.d("Andrew", raw);
+			if (raw.equals("false")) {
+				return false;
+			}
+		}
+		return true;
+	}
 
+}
+
+class CallServer extends AsyncTask<String, Void, String> {
+
+	@Override
+	protected String doInBackground(String... params) {
+		// TODO Auto-generated method stub
+		Log.d("Andrew", ServerData.readContents(params[0]));
+		return ServerData.readContents(params[0]);
+	}
+	
+	@Override
+	protected void onPostExecute(String result) {
+		super.onPostExecute(result);
+	}
+	
 }

@@ -86,13 +86,16 @@ public class ClickingActivity extends Activity{
 		
 	}
 	
-	/*
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		SharedPreferences setting = getSharedPreferences("SaveFile", 0);
+		String name = setting.getString("TeamName", "unit.");
+		score = setting.getInt("Score", 0);
+		playerScore.setText(""+score);
+		teamName.setText(name);
 	}
-	*/
 	
 	@Override
 	protected void onResume() {
@@ -105,13 +108,15 @@ public class ClickingActivity extends Activity{
 		teamName.setText(name);
 	}
 	
-	/*
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		SharedPreferences setting = getSharedPreferences("SaveFile", 0);
+		SharedPreferences.Editor editor = setting.edit();
+		editor.putInt("Score", score);
+		editor.commit();
 	}
-	*/
 
 	@Override
 	protected void onStop() {
@@ -119,7 +124,7 @@ public class ClickingActivity extends Activity{
 		super.onStop();
 		SharedPreferences setting = getSharedPreferences("SaveFile", 0);
 		SharedPreferences.Editor editor = setting.edit();
-		editor.putInt("score", score);
+		editor.putInt("Score", score);
 		editor.commit();
 	}
 }

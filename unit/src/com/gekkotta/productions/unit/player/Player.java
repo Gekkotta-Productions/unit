@@ -12,9 +12,8 @@ public class Player {
 	}
 
 	public boolean isUnique(String ign) {
-		// add url later
-		String url = ("");
-		String raw = ServerData.readContents(url);
+		String url = ("172..26.13.13/unit/unique.php?q=");
+		String raw = ServerData.readContents(url+ign+"&f=IGname&t=player");
 		if (raw.equals("false")) {
 			return false;
 		} else {

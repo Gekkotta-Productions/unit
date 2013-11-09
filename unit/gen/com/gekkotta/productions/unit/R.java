@@ -26,19 +26,23 @@ public final class R {
         public static final int name=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000c;
-        public static final int b_BUMP=0x7f080005;
-        public static final int b_bump=0x7f080001;
-        public static final int b_click=0x7f080002;
-        public static final int cb_status=0x7f08000a;
-        public static final int iv_bump=0x7f080007;
-        public static final int name=0x7f080004;
-        public static final int tv_instructions=0x7f080008;
-        public static final int tv_result=0x7f08000b;
-        public static final int tv_score=0x7f080003;
-        public static final int tv_status=0x7f080009;
-        public static final int tv_team_name=0x7f080000;
-        public static final int tv_title=0x7f080006;
+        public static final int action_settings=0x7f080010;
+        public static final int activity_clicking=0x7f080000;
+        public static final int b_BUMP=0x7f080009;
+        public static final int b_achievement=0x7f080005;
+        public static final int b_bottom=0x7f080004;
+        public static final int b_bump=0x7f080002;
+        public static final int b_click=0x7f080003;
+        public static final int b_upgrade=0x7f080006;
+        public static final int cb_status=0x7f08000e;
+        public static final int iv_bump=0x7f08000b;
+        public static final int name=0x7f080008;
+        public static final int tv_instructions=0x7f08000c;
+        public static final int tv_result=0x7f08000f;
+        public static final int tv_score=0x7f080007;
+        public static final int tv_status=0x7f08000d;
+        public static final int tv_team_name=0x7f080001;
+        public static final int tv_title=0x7f08000a;
     }
     public static final class layout {
         public static final int activity_achievement=0x7f030000;
@@ -53,6 +57,7 @@ public final class R {
         public static final int main=0x7f070000;
     }
     public static final class string {
+        public static final int achievement=0x7f050008;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int bump_button=0x7f050005;
@@ -61,6 +66,7 @@ public final class R {
         public static final int name=0x7f050003;
         public static final int player_score=0x7f050007;
         public static final int team_name=0x7f050004;
+        public static final int upgrade=0x7f050009;
     }
     public static final class style {
         /** 

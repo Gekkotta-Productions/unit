@@ -90,18 +90,16 @@ public class BumpActivity extends Activity {
 							"Data: "
 									+ new String(intent
 											.getByteArrayExtra("data")));
-<<<<<<< HEAD
+
 					//No Team - No Team: Lower ID goes first, ask to make team
 					//TODO implement getTeamID 
 					
 					if( otherID.equals("0") && TEAMID.equals("0") && otherNAME.compareTo(PLAYERNAME)>0){
-=======
+
 					// No Team - No Team: Lower ID goes first, ask to make team
 					// TODO implement getTeamID
 
-					if (otherTEAM.equals("0") && TEAMNAME.equals("0")
-							&& otherNAME.compareTo(PLAYERNAME) > 0) {
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
+	
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater) context
 								.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -144,16 +142,15 @@ public class BumpActivity extends Activity {
 								});
 						deleteDialog.show();
 					}
-<<<<<<< HEAD
+
 					
 					//Team - No Team: NoTeam is asked if they want to join Team's team
 					else if(TEAMID.equals("0") && !otherID.equals("0")){
-=======
+
 
 					// Team - No Team: NoTeam is asked if they want to join
 					// Team's team
-					else if (TEAMNAME.equals("0") && !otherTEAM.equals("0")) {
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
+
 
 						// custom dialog
 						LayoutInflater inflater = (LayoutInflater) context
@@ -183,17 +180,13 @@ public class BumpActivity extends Activity {
 						deleteDialog.show();
 
 					}
-<<<<<<< HEAD
+
 					//Same Team - Same Team: + Points and PLAYERNAME has not bumped OTHERNAME this round
 					else if(!TEAMID.equals("0")^TEAMID.equals(otherID)){
 						
-=======
-					// Same Team - Same Team: + Points and PLAYERNAME has not
-					// bumped OTHERNAME this round
-					else if (TEAMNAME.equals(otherTEAM)) {
-
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 					}
+						
+
 					// Different Team but Same Faction: + MORE Points
 
 					// Different teams completely: Display Name and error
@@ -201,13 +194,10 @@ public class BumpActivity extends Activity {
 					else {
 
 					}
-<<<<<<< HEAD
-				} 
-				
-=======
-				}
 
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
+				} 
+
+
 				else if (action.equals(BumpAPIIntents.MATCHED)) {
 					long channelID = intent
 							.getLongExtra("proposedChannelID", 0);
@@ -216,13 +206,8 @@ public class BumpActivity extends Activity {
 									+ api.userIDForChannelID(channelID));
 					api.confirm(channelID, true);
 					Log.i("Bump Test", "Confirm sent");
-<<<<<<< HEAD
-					}
-					
-=======
-				}
+				}		
 
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 				else if (action.equals(BumpAPIIntents.CHANNEL_CONFIRMED)) {
 					// SENDING DATA
 					long channelID = intent.getLongExtra("channelID", 0);
@@ -230,11 +215,8 @@ public class BumpActivity extends Activity {
 							"Channel confirmed with "
 									+ api.userIDForChannelID(channelID));
 					status.setText("Success!");
-<<<<<<< HEAD
-					String deets = PLAYERNAME + "/"+TEAMNAME+"/"+TEAMID;
-=======
-					String deets = PLAYERNAME + "/" + TEAMNAME;
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
+		String deets = PLAYERNAME + "/"+TEAMNAME+"/"+TEAMID;
+
 					api.send(channelID, deets.getBytes());
 
 				}
@@ -242,12 +224,9 @@ public class BumpActivity extends Activity {
 				else if (action.equals(BumpAPIIntents.NOT_MATCHED)) {
 					Log.i("Bump Test", "Not matched.");
 					status.setText("Please try again");
-<<<<<<< HEAD
-				} 
+				}
 				else if (action.equals(BumpAPIIntents.CONNECTED)) {
-=======
-				} else if (action.equals(BumpAPIIntents.CONNECTED)) {
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
+
 					Log.i("Bump Test", "Connected to Bump...");
 					api.enableBumping();
 				}
@@ -265,10 +244,8 @@ public class BumpActivity extends Activity {
 				Context.MODE_PRIVATE);
 		PLAYERNAME = settings.getString("Name", "-1");
 		TEAMNAME = settings.getString("TeamName", "-1");
-<<<<<<< HEAD
 		TEAMID=settings.getString("TeamId", "-1");
-=======
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
+
 		status = (TextView) findViewById(R.id.tv_result);
 		TextView message = (TextView) findViewById(R.id.tv_instructions);
 		Typeface tf = Typeface.createFromAsset(getAssets(), "roboto.ttf");
@@ -276,23 +253,19 @@ public class BumpActivity extends Activity {
 		status.setText("Initializing...");
 		message.setTypeface(tf);
 		Log.i("BumpTest", "boot");
-<<<<<<< HEAD
+
 		bindService(new Intent(IBumpAPI.class.getName()), connection,
 				Context.BIND_AUTO_CREATE);
-=======
 
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 		filter = new IntentFilter();
 		filter.addAction(BumpAPIIntents.CHANNEL_CONFIRMED);
 		filter.addAction(BumpAPIIntents.DATA_RECEIVED);
 		filter.addAction(BumpAPIIntents.NOT_MATCHED);
 		filter.addAction(BumpAPIIntents.MATCHED);
 		filter.addAction(BumpAPIIntents.CONNECTED);
-<<<<<<< HEAD
+
 		registerReceiver(receiver, filter);
-=======
-		setConnections();
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
+
 		bumping = true;
 		status.setText("Awaiting Bump");
 	}
@@ -370,16 +343,7 @@ public class BumpActivity extends Activity {
 		onDestroy();
 	}
 
-<<<<<<< HEAD
-=======
-	public void setConnections() {
-		bindService(new Intent(IBumpAPI.class.getName()), connection,
-				Context.BIND_AUTO_CREATE);
-		registerReceiver(receiver, filter);
 
-	}
-
->>>>>>> ff96affe8bbe1d0ac844501f968e9c242d8f042f
 	public static boolean isEmailValid(String email) {
 		boolean isValid = false;
 

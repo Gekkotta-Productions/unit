@@ -44,7 +44,7 @@ public final class R {
     public static final class id {
         public static final int action_settings=0x7f08002d;
         public static final int activity_clicking=0x7f080000;
-        public static final int b_BUMP=0x7f08000a;
+        public static final int b_BUMP=0x7f080009;
         public static final int b_achievement=0x7f080004;
         public static final int b_block=0x7f080023;
         public static final int b_bottom=0x7f080003;
@@ -70,7 +70,7 @@ public final class R {
         public static final int form_name_warning=0x7f080018;
         public static final int instructions=0x7f080026;
         public static final int lv_ts_history=0x7f080029;
-        public static final int name=0x7f080009;
+        public static final int name=0x7f08000a;
         public static final int name_warning=0x7f080021;
         public static final int password=0x7f08000f;
         public static final int solo=0x7f080025;

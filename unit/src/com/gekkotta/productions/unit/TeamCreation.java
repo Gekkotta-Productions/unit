@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -31,7 +32,7 @@ public class TeamCreation extends Activity {
 		
 		tv = (TextView)findViewById(R.id.instructions);
 		tv_hidden = (TextView)findViewById(R.id.name_warning);
-		et = (EditText)findViewById(R.id.tv_team_name);
+		et = (EditText)findViewById(R.id.et_team_name);
 		Typeface tf = Typeface.createFromAsset(getAssets(), "roboto.ttf");
 		tv.setTypeface(tf);
 		
@@ -46,6 +47,8 @@ public class TeamCreation extends Activity {
 				SharedPreferences.Editor editor = settings.edit();
 				editor.putString("TeamName", "");
 				editor.commit();
+				Intent i = new Intent("android.intent.action.CLICKING");
+				startActivity(i);
 			}
 		});
 		confirm.setOnClickListener(new OnClickListener() {
@@ -58,6 +61,8 @@ public class TeamCreation extends Activity {
 					SharedPreferences.Editor editor = settings.edit();
 					editor.putString("TeamName", et.getText().toString());
 					editor.commit();
+					Intent i = new Intent("android.intent.action.CLICKING");
+					startActivity(i);
 				} else {
 					tv_hidden.setVisibility(TextView.VISIBLE);
 				}

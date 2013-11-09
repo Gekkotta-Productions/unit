@@ -47,20 +47,22 @@ public class Registration extends Activity{
 				a = ename.getText().toString();
 				b = eemail.getText().toString();
 				c = eign.getText().toString();
-				Player p = new Player(a, b, c);
+				//Player p = new Player(a, b, c);
+				/* wait for server information
 				if(!p.isUnique(c)){
 					warning.setVisibility(TextView.VISIBLE);
 				} else {
+				*/
 					SharedPreferences settings = getSharedPreferences("SaveFile", 0);
 					SharedPreferences.Editor editor = settings.edit();
-					editor.putString("Name", ename.getText().toString());
-					editor.putString("Email", eemail.getText().toString());
-					editor.putString("IGN", eign.getText().toString());
-					editor.putString("TeamName", eign.getText().toString());
+					editor.putString("Name", a);
+					editor.putString("Email", b);
+					editor.putString("IGN", c);
+					editor.putString("TeamName", c);
 					editor.commit();
-					p.sendToServer(a, b, c);
+					//p.sendToServer(a, b, c);
 					startActivity(new Intent("android.intent.action.CLICKING"));
-				}
+				//}
 			}
 		});
 	}

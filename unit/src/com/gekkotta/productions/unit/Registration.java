@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.gekkotta.productions.unit.player.Player;
+
 public class Registration extends Activity{
 	
 	@Override
@@ -19,9 +21,11 @@ public class Registration extends Activity{
 		setContentView(R.layout.registration_screen);
 		
 		TextView name, email, ign;
+		final TextView warning;
 		final EditText ename, eemail, eign;
 		Button submit;
 		
+		warning = (TextView)findViewById(R.id.form_gamename_warning);
 		name = (TextView)findViewById(R.id.form_name);
 		name.setText("Name:");
 		email = (TextView)findViewById(R.id.form_email);
@@ -39,17 +43,24 @@ public class Registration extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//check server for ign
-				//if not taken, this
-				//else, give warning and leave
-				SharedPreferences settings = getSharedPreferences("SaveFile", 0);
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putString("Name", ename.getText().toString());
-				editor.putString("Email", eemail.getText().toString());
-				editor.putString("IGN", eign.getText().toString());
-				editor.putString("TeamName", eign.getText().toString());
-				editor.commit();
-				startActivity(new Intent("android.intent.action.CLICKING"));
+				String a, b, c;
+				a = ename.getText().toString();
+				b = eemail.getText().toString();
+				c = eign.getText().toString();
+				Player p = new Player(a, b, c);
+				if(!p.isUnique(c)){
+					warning.setVisibility(TextView.VISIBLE);
+				} else {
+					SharedPreferences settings = getSharedPreferences("SaveFile", 0);
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putString("Name", ename.getText().toString());
+					editor.putString("Email", eemail.getText().toString());
+					editor.putString("IGN", eign.getText().toString());
+					editor.putString("TeamName", eign.getText().toString());
+					editor.commit();
+					p.sendToServer(a, b, c);
+					startActivity(new Intent("android.intent.action.CLICKING"));
+				}
 			}
 		});
 	}

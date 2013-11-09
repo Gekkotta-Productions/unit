@@ -12,5 +12,6 @@
     <string name="achievement">Achievements</string>
     <string name="upgrade">Upgrades</string>
     <string name="submit">Submit</string>
+    <string name="duplicate">Error: IGN is already Taken</string>
 
 </resources>

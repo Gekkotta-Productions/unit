@@ -29,12 +29,21 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress" />"
+        android:inputType="textEmailAddress" />
     
     <TextView
         android:id="@+id/form_gamename"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    
+    <TextView
+        android:id="@+id/form_gamename_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="invisible"
+        android:text="@string/duplicate" />"
 
     <EditText
         android:id="@+id/form_input_gamename"

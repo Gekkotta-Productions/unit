@@ -3,6 +3,7 @@ package com.gekkotta.productions.unit.clicking;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +24,7 @@ public class ClickingActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_clicking);
 		SharedPreferences setting = getSharedPreferences("SaveFile", 0);
+		Typeface tf = Typeface.createFromAsset(getAssets(), "roboto.ttf");
 		
 		bumpButton = (Button) findViewById(R.id.b_bump);
 		clickButton = (Button) findViewById(R.id.b_click);
@@ -34,10 +36,12 @@ public class ClickingActivity extends Activity{
 		//Get the team name from a cache or something, this way the user does not need to be online
 		String name = setting.getString("TeamName", "unit.");
 		teamName.setText(name);
+		teamName.setTypeface(tf);
 		
 		//Get the score from cache of where they left off last time
 		score = setting.getInt("Score", 0);
 		playerScore.setText(""+score);
+		playerScore.setTypeface(tf);
 		
 		bumpButton.setOnClickListener(new OnClickListener() {
 			@Override

@@ -1,6 +1,5 @@
-unit.
-
-by Gekkotta Productions
+unit. by Gekkotta Productions
+=============================
 
 A game and server backend developed over the course of one and a half days at YHacks. Utilizes the Bump API as a core gameplay feature. 
 
